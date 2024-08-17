@@ -1,0 +1,267 @@
+/* Estilos básicos */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 100;
+    padding: 0;
+    background-color: #0e0e0e;
+    color: #ccc;
+    overflow-x: hidden;      
+}
+
+
+main {
+ 	  margin: 10%;
+	  width: 80%;
+
+} 
+
+@media only screen and (max-width: 480px) {
+
+main {
+				margin: 0 ;
+ 				width: 100%;
+} 
+nav {
+    margin: 1px;
+}
+
+iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 8px;
+        }      
+
+
+}
+
+header {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 15px; /* Corregido */
+    text-align: center;
+}
+
+nav {
+    margin: 1px;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+    color: #FFF; /* Color plomo para los enlaces */
+    margin: 0 10px; /* Corregido */
+    font-size: 1.2em;
+}
+
+/* Efecto Glitch en el Título */
+.glitch {
+    position: relative;
+    font-size: 2em;
+    color: #fff;
+    animation: glitch 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #f00; /* Corregido */
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse; /* Corregido */
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #0ff; /* Corregido */
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse; /* Corregido */
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.3deg); }
+    5% { clip: rect(16px, 9999px, 40px, 0); transform: skew(0.3deg); }
+    10% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
+    15% { clip: rect(0px, 9999px, 49px, 0); transform: skew(0.3deg); }
+    20% { clip: rect(11px, 9999px, 74px, 0); transform: skew(0.3deg); }
+    25% { clip: rect(85px, 9999px, 104px, 0); transform: skew(0.3deg); }
+    30% { clip: rect(5px, 9999px, 48px, 0); transform: skew(0.3deg); }
+    35% { clip: rect(95px, 9999px, 143px, 0); transform: skew(0.3deg); }
+    40% { clip: rect(9px, 9999px, 84px, 0); transform: skew(0.3deg); }
+    45% { clip: rect(32px, 9999px, 99px, 0); transform: skew(0.3deg); }
+    50% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.3deg); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.3deg); }
+    5% { clip: rect(16px, 9999px, 40px, 0); transform: skew(0.3deg); }
+    10% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
+    15% { clip: rect(0px, 9999px, 49px, 0); transform: skew(0.3deg); }
+    20% { clip: rect(11px, 9999px, 74px, 0); transform: skew(0.3deg); }
+    25% { clip: rect(85px, 9999px, 104px, 0); transform: skew(0.3deg); }
+    30% { clip: rect(5px, 9999px, 48px, 0); transform: skew(0.3deg); }
+    35% { clip: rect(95px, 9999px, 143px, 0); transform: skew(0.3deg); }
+    40% { clip: rect(9px, 9999px, 84px, 0); transform: skew(0.3deg); }
+    45% { clip: rect(32px, 9999px, 99px, 0); transform: skew(0.3deg); }
+    50% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.3deg); }
+    55% { clip: rect(13px, 9999px, 50px, 0); transform: skew(0.3deg); }
+    60% { clip: rect(40px, 9999px, 90px, 0); transform: skew(0.3deg); }
+    65% { clip: rect(23px, 9999px, 70px, 0); transform: skew(0.3deg); }
+    70% { clip: rect(30px, 9999px, 50px, 0); transform: skew(0.3deg); }
+    75% { clip: rect(50px, 9999px, 70px, 0); transform: skew(0.3deg); }
+    80% { clip: rect(10px, 9999px, 80px, 0); transform: skew(0.3deg); }
+    85% { clip: rect(35px, 9999px, 95px, 0); transform: skew(0.3deg); }
+    90% { clip: rect(20px, 9999px, 60px, 0); transform: skew(0.3deg); }
+    95% { clip: rect(45px, 9999px, 105px, 0); transform: skew(0.3deg); }
+    100% { clip: rect(50px, 9999px, 70px, 0); transform: skew(0.3deg); }
+}
+
+/* Efecto Glitch en los enlaces */
+nav a::before,
+nav a::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+nav a::before {
+    left: 2px;
+    text-shadow: -2px 0 #f00; /* Corregido */
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-links 2.5s infinite linear alternate-reverse; /* Corregido */
+}
+
+nav a::after {
+    left: -2px;
+    text-shadow: -2px 0 #0ff; /* Corregido */
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-links 1.5s infinite linear alternate-reverse; /* Corregido */
+}
+
+nav a:hover::before,
+nav a:hover::after {
+    opacity: 1;
+}
+
+  /* Estilos para el modal en dark mode con estilo minimalista y glitch */
+  /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            padding-top: 60px;
+            animation: glitch-animation 0.6s ease-out;
+        }
+
+        .modal-content {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+            margin: 5% auto;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            width: 70%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .close {
+            color: #888;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #f5f5f5;
+            text-decoration: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 650px;
+            border: none;
+            border-radius: 8px;
+        }      
+
+        @keyframes glitch-animation {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-5px, 5px);
+            }
+            40% {
+                transform: translate(5px, -5px);
+            }
+            60% {
+                transform: translate(-5px, 5px);
+            }
+            80% {
+                transform: translate(5px, -5px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .glitch-text {
+            position: relative;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f5f5f5;
+            font-size: 18px;
+            display: inline-block;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px #ff00c1;
+            }
+            33% {
+                text-shadow: -2px -2px #00ffea;
+            }
+            66% {
+                text-shadow: 2px -2px #00ffea, -2px 2px #ff00c1;
+            }
+            100% {
+                text-shadow: 2px 2px #ff00c1;
+            }
+        }

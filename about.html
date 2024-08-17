@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script>
+        console.log("Datos sobre el navegador:");
+        let navegador = navigator.userAgent;
+        console.log(navegador);
+        document.write(navegador);
+        document.write("<p></p>");
+    </script>
+
+<script type="application/javascript">
+  function getIP(json) {
+    document.write("public IP address is: ", json.ip);
+  }
+</script>
+
+<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+
+
+
+</body>
+
+</html>
