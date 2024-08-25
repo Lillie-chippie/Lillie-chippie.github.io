@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lillie Chippie</title>
+    <link rel="stylesheet" href="styles.css">
+
+
+
+       
+
+    <main>
+
+
+
+        <section>
+            <h2>Bienvenida</h2>
+            
+<p>                
+Hola! Mi nombre es Lillie (o tal vez no🏳‍⚧ jejeje.. al menos eso dice por aquí si) y te doy la bienvenida a mi rincón kawaii en la web. 🌟 Soy una chica trans apasionada por el anime y la moda Harajuku, también dibujo monas chinas y eso 
+</p>
+<p>
+ Pero eso no es todo, también soy una fanática de los circuitos electrónicos y me encanta crear música chiptune con LSDJ, ese software mágico para consolas portátiles. 🎶💻 Y sí, también hago videojuegos, porque ¿por qué no? 🎮
+</p>
+<p>
+Mi anime favorito es Madoka Magica, y si te gusta la mezcla de magia, drama y todo lo raro, ¡estás en el lugar adecuado! 
+</p>
+<p>
+Aquí en mi blog, compartiré contigo mis pensamientos, proyectos y todo lo que me fascina. Soy un poco rara: otaku, hikikomori y tal vez un poco tsundere. Si decides hablarme, es posible que hable contigo una IA, pero si logras superar el test de Turing, 
+¡podríamos tener una conversación especial! 💻💕 nah... mejor ni me hables, no me gusta socializar >_<
+</p>
+<p>
+¡Espero que disfrutes este espacio tanto como yo disfruto creando en él! (a puro html baby) 
+</p>
+<p>
+ #Madoka #Chiptune #Programmer #GameDevelop
+</p>
+
+
+            
+        </section>
+        <section>
+            <h2>Últimas Publicaciones</h2>
+
+<!-- SnapWidget -->
+<script src="https://snapwidget.com/js/snapwidget.js"></script>
+<iframe src="https://snapwidget.com/embed/1076333" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;  width:100%; " title="Posts from Instagram"></iframe>
+
+
+
+
+            <article>
+                <h3>Mi Anime Favorito</h3>
+                <p>
+                    En esta publicación hablaré sobre *Madoka Magica*, una serie que me ha impactado profundamente y
+                    que considero mi favorita. Desde sus personajes hasta su narrativa única, ¡te invito a descubrir
+                    por qué me encanta!
+                </p>
+            </article>
+            <article>
+                <h3>Moda Harajuku</h3>
+                <p>
+                    Aquí compartiré mis experiencias y pensamientos sobre la moda Harajuku, desde los estilos más
+                    extravagantes hasta las tendencias actuales. ¡Espero que te inspiren y te animen a explorar este
+                    fascinante mundo de la moda!
+                </p>
+<h3>Proyectos Electrónicos</h3>
+                <p>
+                    Aquí compartiré mis proyectos de circuitos electrónicos, desde sencillos experimentos hasta creaciones
+                    más complejas. ¡Espero que te inspiren!
+                </p>
+            </article>
+
+  <article>
+                <h3>Mis Ilustraciones y Creaciones con IA</h3>
+                <p>
+                    En este espacio mostraré algunos de mis dibujos estilo anime y cómo he incorporado inteligencia artificial
+                    en mi proceso creativo. Descubre cómo uso la IA para mejorar y complementar mis obras.
+                </p>
+<a href="deviantart.html" class="glitch-text" > >>> </a>
+            </article>
+            <article>
+                <h3>Música Experimental con LSDJ</h3>
+                <p>
+                    Aquí hablaré sobre mi pasión por la música chiptune y cómo utilizo LSDJ para componer temas experimentales.
+                    Si te interesa la música electrónica de 8 bits, ¡no te lo pierdas!
+                </p>
+<a href="music.html" class="glitch-text" > >>> </a>
+            </article>
+
+
+
+        </section>
+
+
+<h2>X(Twitter) </h2>
+
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script> <div class="elfsight-app-e02e5b90-727e-4e8c-a832-aab23250f5f1" data-elfsight-app-lazy></div>
+
+
+
+    </main>
+
+
+ 
+
+    <!-- El modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="aboutIframe" src=""></iframe>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="contactIframe" src=""></iframe>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        
+
+        function openModal(modalId, iframeId, url) {
+            var modal = document.getElementById(modalId);
+            var iframe = document.getElementById(iframeId);
+            iframe.src = url;
+            modal.style.display = "block";
+        }
+
+        document.getElementById("aboutLink").onclick = function(event) {
+            event.preventDefault();
+            openModal("aboutModal", "aboutIframe", "about.html");
+        };
+
+        document.getElementById("contactLink").onclick = function(event) {
+            event.preventDefault();
+            openModal("contactModal", "contactIframe", "contact.html");
+        };
+
+
+        // Cerrar modales
+        var closeButtons = document.getElementsByClassName("close");
+        for (var i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].onclick = function() {
+                this.parentElement.parentElement.style.display = "none";
+            };
+        }
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.onclick = function(event) {
+            if (event.target.className.includes('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+ 
+                
+        
