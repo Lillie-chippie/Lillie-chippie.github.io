@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <div class="gallery" id="gallery"></div>
+
+    <!-- Modal -->
+    <div class="modal-im" id="modal">
+        <span class="close" id="close">&times;</span>
+        <span class="fullscreen" id="fullscreen">&#x26F6;</span>
+        <img class="modal-content" id="modal-img">
+        <div class="caption" id="caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+<script>
+loadImages('images.xml');
+</script>
+
+
+</body>
+</html>
+
