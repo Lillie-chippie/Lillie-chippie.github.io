@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicaciones</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        article {
+            border: 1px solid #333;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        article a {
+            color: #e0e0e0;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        article a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #333;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+
+        article a:hover::before {
+            transform: scaleX(1);
+        }
+
+        article a:hover {
+            color: #fff;
+            animation: glitch 1s infinite;
+        }
+
+        article h3, article p {
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-0.5px, 0.5px); }
+            40% { transform: translate(-0.5px, -0.5px); }
+            60% { transform: translate(0.5px, 0.5px); }
+            80% { transform: translate(0.5px, -0.5px); }
+            100% { transform: translate(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="posts-container"></div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('posts-container');
+
+            function loadXML() {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'posts.xml', true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(xhr.responseText, 'text/xml');
+                        const posts = xmlDoc.getElementsByTagName('post');
+                        
+                        Array.from(posts).forEach(post => {
+                            const title = post.getElementsByTagName('title')[0].textContent;
+                            const content = post.getElementsByTagName('content')[0].textContent;
+                            const url = post.getElementsByTagName('url')[0].textContent;
+
+                            const article = document.createElement('article');
+                            article.innerHTML = `
+                                <a href="${url}" target="_parent">
+                                    <h3>${title}</h3>
+                                    <p>${content}</p>
+                                </a>
+                            `;
+                            container.appendChild(article);
+                        });
+                    }
+                };
+                xhr.send();
+            }
+
+            loadXML();
+        });
+    </script>
+</body>
+</html>

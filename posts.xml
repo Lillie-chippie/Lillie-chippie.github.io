@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<posts>
+    <post>
+        <title>Mi Anime Favorito</title>
+        <content>En esta publicación hablaré sobre *Madoka Magica*, una serie que me ha impactado profundamente y que considero mi favorita. Desde sus personajes hasta su narrativa única, ¡te invito a descubrir por qué me encanta!</content>
+        <url>madoka/index.html</url>
+    </post>
+    <post>
+        <title>Moda Harajuku</title>
+        <content>Aquí compartiré mis experiencias y pensamientos sobre la moda Harajuku, desde los estilos más extravagantes hasta las tendencias actuales. ¡Espero que te inspiren y te animen a explorar este fascinante mundo de la moda!</content>
+        <url>harajuku.html</url>
+    </post>
+    <post>
+        <title>Proyectos Electrónicos</title>
+        <content>Aquí compartiré mis proyectos de circuitos electrónicos, desde sencillos experimentos hasta creaciones más complejas. ¡Espero que te inspiren!</content>
+        <url>apc/index.html</url>
+    </post>
+    <post>
+        <title>Mis Ilustraciones y Creaciones con IA</title>
+        <content>En este espacio mostraré algunos de mis dibujos estilo anime y cómo he incorporado inteligencia artificial en mi proceso creativo. Descubre cómo uso la IA para mejorar y complementar mis obras.</content>
+        <url>deviantart.html</url>
+    </post>
+    <post>
+        <title>Música Experimental con LSDJ</title>
+        <content>Aquí hablaré sobre mi pasión por la música chiptune y cómo utilizo LSDJ para componer temas experimentales. Si te interesa la música electrónica de 8 bits, ¡no te lo pierdas!</content>
+        <url>music.html</url>
+    </post>
+</posts>
