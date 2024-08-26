@@ -1,0 +1,150 @@
+/* styles.css */
+
+/* Estilos generales del cuerpo de la página */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #eee;
+    background-color: #2e003e; /* Fondo oscuro con matices púrpuras */
+    overflow-y: scroll; /* Permite el scroll vertical */
+    height: 100vh; /* Asegura que el contenedor principal tenga altura completa */
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #3c004e; /* Color oscuro similar a Homura */
+    padding: 15px;
+    text-align: center;
+    color: #f8c6d0; /* Color claro inspirado en Madoka */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilos de las secciones */
+section {
+    padding: 15px;
+    margin: 10px 0; /* Espaciado reducido entre secciones */
+    background-color: #4a005d; /* Fondo oscuro para las secciones */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px); /* Desenfoque ligero para un toque más etéreo */
+}
+
+/* Títulos dentro de las secciones */
+h1, h2 {
+    color: #f8c6d0; /* Color claro inspirado en Madoka para los títulos */
+}
+
+/* Estilo del pie de página */
+footer {
+    background-color: #3c004e;
+    padding: 10px;
+    text-align: center;
+    color: #f8c6d0; /* Color claro inspirado en Madoka */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilos para los elementos flotantes */
+.floating-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite que los clics pasen a través de los elementos flotantes */
+    z-index: 1; /* Asegura que los elementos flotantes estén sobre el contenido principal */
+}
+
+.floating-items img {
+    position: absolute;
+    width: 80px; /* Tamaño ajustado para un efecto más prominente */
+    height: auto;
+    opacity: 0.7; /* Ligera transparencia para un efecto etéreo */
+}
+
+/* Colores específicos para los elementos flotantes */
+.gears {
+    top: 15%;
+    left: 5%;
+    animation: rotateFloat 25s linear infinite, hallucinate 10s ease-in-out infinite;
+    filter: blur(3px);
+}
+
+.sweets {
+    top: 25%;
+    right: 5%;
+    animation: bounceFloat 20s ease-in-out infinite, hallucinate 15s ease-in-out infinite;
+    filter: blur(3px);
+}
+
+.teddy-bears {
+    bottom: 25%;
+    left: 20%;
+    animation: driftFloat 30s linear infinite, hallucinate 12s ease-in-out infinite;
+    filter: blur(3px);
+}
+
+.knots {
+    bottom: 25%;
+    right: 20%;
+    animation: floatAndSpin 25s linear infinite, hallucinate 20s ease-in-out infinite;
+    filter: blur(3px);
+}
+
+/* Animaciones específicas para cada tipo de elemento flotante */
+@keyframes rotateFloat {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    100% {
+        transform: rotate(360deg) translateY(-100vh);
+    }
+}
+
+@keyframes bounceFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50vh);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes driftFloat {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(20vw) translateY(-50vh);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@keyframes floatAndSpin {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-50vh) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* Efecto de hilos flotantes */
+.threads {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 70%);
+    pointer-events: none; /* Permite que los clics pasen a través de los hilos */
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    filter: blur(5px);
+}
