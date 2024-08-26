@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atari Punk Console - Explicación Épica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Atari Punk Console</h1>
+            <p>Explora el funcionamiento de este sintetizador de onda épico</p>
+        </header>
+        
+        <section class="visualizador">
+            <canvas id="oscilloscope"></canvas>
+        </section>
+
+        <section class="controls">
+            <label for="control1">Control 1 (Oscilador):</label>
+            <input type="range" id="control1" min="0" max="100" value="50">
+            
+            <label for="control2">Control 2 (Modulación):</label>
+            <input type="range" id="control2" min="0" max="100" value="50">
+        </section>
+        
+        <section class="descripcion">
+            <h2>¿Cómo Funciona?</h2>
+            <p>El Atari Punk Console es un circuito simple que genera sonidos únicos mediante la combinación de dos osciladores y un modulado de pulso. A continuación, puedes ajustar los controles para ver cómo cambian los sonidos.</p>
+        </section>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
