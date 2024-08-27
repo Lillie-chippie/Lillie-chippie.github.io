@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madoka Magica - Mi Anime Favorito</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sty.css">
 </head>
 <body>
     <header>
@@ -45,26 +46,61 @@
     <!-- Sección para elementos flotantes -->
     <div class="floating-items">
         <img src="gears.png" alt="Engranaje" class="gears">
+<img src="gears.png" alt="Engranaje" class="gearsinverted">
         <img src="sweets.png" alt="Dulces" class="sweets">
         <img src="Anthonypic.png" alt="Peluches" class="teddy-bears">
         <img src="knots.png" alt="Nudos" class="knots">
         <div class="threads"></div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const threads = document.querySelector('.threads');
-            if (threads) {
-                let posY = 0;
-                setInterval(() => {
-                    posY += 1;
-                    threads.style.transform = `translateY(${posY}px)`;
-                    if (posY > window.innerHeight) {
-                        posY = -threads.clientHeight;
+    
+
+
+<script>
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function createDuplicate(element, className) {
+            const newElement = element.cloneNode(true);
+            newElement.classList.add('duplicate', className);
+
+            // Cambiar tamaño
+            const newSize = getRandomInt(50, 150); // Tamaño aleatorio entre 50px y 150px
+            newElement.style.width = `${newSize}px`;
+
+            // Cambiar opacidad
+            const newOpacity = (Math.random() * (0.8 - 0.3) + 0.3).toFixed(2); // Opacidad aleatoria entre 0.3 y 0.8
+            newElement.style.opacity = newOpacity;
+
+            // Cambiar posición
+            const newTop = getRandomInt(0, 100); // Posición vertical aleatoria entre 0% y 100%
+            const newLeft = getRandomInt(0, 100); // Posición horizontal aleatoria entre 0% y 100%
+            newElement.style.top = `${newTop}vh`;
+            newElement.style.left = `${newLeft}vw`;
+
+            document.querySelector('.floating-items').appendChild(newElement);
+        }
+
+        function duplicateElements() {
+            const originalElements = {
+                gears: document.querySelector('.gears'),
+                sweets: document.querySelector('.sweets'),
+                teddyBears: document.querySelector('.teddy-bears'),
+                knots: document.querySelector('.knots')
+            };
+
+            for (const [key, element] of Object.entries(originalElements)) {
+                if (element) {
+                    // Crear varios duplicados para cada tipo de elemento
+                    for (let i = 0; i < 10; i++) {
+                        createDuplicate(element, key);
                     }
-                }, 20);
+                }
             }
-        });
+        }
+
+        duplicateElements();
     </script>
 </body>
 </html>

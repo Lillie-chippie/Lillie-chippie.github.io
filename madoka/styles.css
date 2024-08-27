@@ -6,14 +6,14 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     color: #eee;
-    background-color: #2e003e; /* Fondo oscuro con matices púrpuras */
+    background-color: #1a002e; /* Fondo más oscuro con matices púrpuras */
     overflow-y: scroll; /* Permite el scroll vertical */
     height: 100vh; /* Asegura que el contenedor principal tenga altura completa */
 }
 
 /* Estilo del encabezado */
 header {
-    background-color: #3c004e; /* Color oscuro similar a Homura */
+    background-color: #2b003d; /* Color oscuro similar a Homura */
     padding: 15px;
     text-align: center;
     color: #f8c6d0; /* Color claro inspirado en Madoka */
@@ -24,10 +24,10 @@ header {
 section {
     padding: 15px;
     margin: 10px 0; /* Espaciado reducido entre secciones */
-    background-color: #4a005d; /* Fondo oscuro para las secciones */
+    background-color: #3c004e; /* Fondo oscuro para las secciones */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px); /* Desenfoque ligero para un toque más etéreo */
+    backdrop-filter: none; /* Eliminado el desenfoque */
 }
 
 /* Títulos dentro de las secciones */
@@ -37,7 +37,7 @@ h1, h2 {
 
 /* Estilo del pie de página */
 footer {
-    background-color: #3c004e;
+    background-color: #2b003d;
     padding: 10px;
     text-align: center;
     color: #f8c6d0; /* Color claro inspirado en Madoka */
@@ -60,35 +60,40 @@ footer {
     width: 80px; /* Tamaño ajustado para un efecto más prominente */
     height: auto;
     opacity: 0.7; /* Ligera transparencia para un efecto etéreo */
+    filter: blur(1px); /* Desenfoque leve para todos los elementos flotantes */
 }
 
 /* Colores específicos para los elementos flotantes */
 .gears {
+    
     top: 15%;
     left: 5%;
     animation: rotateFloat 25s linear infinite, hallucinate 10s ease-in-out infinite;
-    filter: blur(3px);
+}
+
+.gearsinverted {
+
+    top: 15%;
+    left: 5%;
+    animation: rotateFloatinverted 25s linear infinite, hallucinate 10s ease-in-out infinite;
 }
 
 .sweets {
     top: 25%;
     right: 5%;
     animation: bounceFloat 20s ease-in-out infinite, hallucinate 15s ease-in-out infinite;
-    filter: blur(3px);
 }
 
 .teddy-bears {
     bottom: 25%;
     left: 20%;
     animation: driftFloat 30s linear infinite, hallucinate 12s ease-in-out infinite;
-    filter: blur(3px);
 }
 
 .knots {
     bottom: 25%;
     right: 20%;
     animation: floatAndSpin 25s linear infinite, hallucinate 20s ease-in-out infinite;
-    filter: blur(3px);
 }
 
 /* Animaciones específicas para cada tipo de elemento flotante */
@@ -97,7 +102,16 @@ footer {
         transform: rotate(0deg) translateY(0);
     }
     100% {
-        transform: rotate(360deg) translateY(-100vh);
+        transform: rotate(3600deg) translateY(0);
+    }
+}
+
+@keyframes rotateFloatinverted {
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+    100% {
+        transform: rotate(-3600deg) translateY(0);
     }
 }
 
@@ -146,5 +160,46 @@ footer {
     pointer-events: none; /* Permite que los clics pasen a través de los hilos */
     opacity: 0.5;
     mix-blend-mode: screen;
-    filter: blur(5px);
+    filter: blur(2px); /* Desenfoque leve para los hilos flotantes */
 }
+
+   /* Nuevas animaciones */
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        @keyframes scaleAndFade {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .duplicate {
+            position: absolute;
+            width: 80px; /* Tamaño base */
+            height: auto;
+            opacity: 0.6; /* Opacidad base */
+            pointer-events: none; /* Permitir que los clics pasen a través de los elementos duplicados */
+        }
+
+        .duplicate.gears {
+            animation: rotateFloatinverted 30s linear infinite, hallucinate 10s ease-in-out infinite;
+scaleAndFade 18s ease-in-out infinite;
+        }
+
+.duplicate.gearsinverted {
+            animation: rotateFloat 25s linear infinite, hallucinate 10s ease-in-out infinite;
+scaleAndFade 18s ease-in-out infinite;
+        }
+
+        .duplicate.sweets {
+            animation: scaleAndFade 22s ease-in-out infinite, floatUp 18s linear infinite;
+        }
+
+        .duplicate.teddy-bears {
+            animation: driftFloat 30s linear infinite, scaleAndFade 24s ease-in-out infinite;
+        }
+
+        .duplicate.knots {
+            animation: scaleAndFade 20s ease-in-out infinite,floatAndSpin 25s linear infinite, floatUp 22s linear infinite;
+        }

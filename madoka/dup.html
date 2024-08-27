@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicar Elementos Flotantes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Nuevas animaciones */
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        @keyframes scaleAndFade {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .duplicate {
+            position: absolute;
+            width: 80px; /* Tamaño base */
+            height: auto;
+            opacity: 0.6; /* Opacidad base */
+            pointer-events: none; /* Permitir que los clics pasen a través de los elementos duplicados */
+        }
+
+        .duplicate.gears {
+            animation: floatUp 12s linear infinite, scaleAndFade 18s ease-in-out infinite;
+        }
+
+        .duplicate.sweets {
+            animation: scaleAndFade 22s ease-in-out infinite, floatUp 18s linear infinite;
+        }
+
+        .duplicate.teddy-bears {
+            animation: floatUp 20s linear infinite, scaleAndFade 24s ease-in-out infinite;
+        }
+
+        .duplicate.knots {
+            animation: scaleAndFade 20s ease-in-out infinite, floatUp 22s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-items">
+        <img src="gears.png" class="gears" alt="Gears">
+        <img src="sweets.png" class="sweets" alt="Sweets">
+        <img src="teddy-bears.png" class="teddy-bears" alt="Teddy Bears">
+        <img src="knots.png" class="knots" alt="Knots">
+    </div>
+
+    <script>
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function createDuplicate(element, className) {
+            const newElement = element.cloneNode(true);
+            newElement.classList.add('duplicate', className);
+
+            // Cambiar tamaño
+            const newSize = getRandomInt(50, 150); // Tamaño aleatorio entre 50px y 150px
+            newElement.style.width = `${newSize}px`;
+
+            // Cambiar opacidad
+            const newOpacity = (Math.random() * (0.8 - 0.3) + 0.3).toFixed(2); // Opacidad aleatoria entre 0.3 y 0.8
+            newElement.style.opacity = newOpacity;
+
+            // Cambiar posición
+            const newTop = getRandomInt(0, 100); // Posición vertical aleatoria entre 0% y 100%
+            const newLeft = getRandomInt(0, 100); // Posición horizontal aleatoria entre 0% y 100%
+            newElement.style.top = `${newTop}vh`;
+            newElement.style.left = `${newLeft}vw`;
+
+            document.querySelector('.floating-items').appendChild(newElement);
+        }
+
+        function duplicateElements() {
+            const originalElements = {
+                gears: document.querySelector('.gears'),
+                sweets: document.querySelector('.sweets'),
+                teddyBears: document.querySelector('.teddy-bears'),
+                knots: document.querySelector('.knots')
+            };
+
+            for (const [key, element] of Object.entries(originalElements)) {
+                if (element) {
+                    // Crear varios duplicados para cada tipo de elemento
+                    for (let i = 0; i < 10; i++) {
+                        createDuplicate(element, key);
+                    }
+                }
+            }
+        }
+
+        duplicateElements();
+    </script>
+</body>
+</html>
