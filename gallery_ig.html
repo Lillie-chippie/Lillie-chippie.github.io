@@ -3,17 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galería IG</title>
+<title>Galería IG Optimizada</title>
 
 <style>
 :root {
     --radius: 12px;
 }
 
+/* RESET BÁSICO */
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 16px;
+    font-family: Arial, sans-serif;
     background: #fff;
 }
 
@@ -29,80 +34,73 @@ h2 {
     gap: 12px;
 }
 
-/* WRAPPER para mantener 1:1 perfecto */
+/* ITEM 1:1 (iframe-safe) */
 .gallery-item {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1; /* CUADRADO REAL */
+    padding-top: 100%; /* 🔒 cuadrado real */
     overflow: hidden;
     border-radius: var(--radius);
     background: #eee;
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
-/* SHIMMER + BLUR */
+/* SHIMMER LIGERO */
 .gallery-item::before {
     content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(
         90deg,
-        #eee,
-        #f5f5f5,
-        #eee
+        #eee 25%,
+        #f5f5f5 37%,
+        #eee 63%
     );
-    background-size: 200% 100%;
-    animation: shimmer 1.4s infinite;
+    background-size: 400% 100%;
+    animation: shimmer 1.2s linear infinite;
     z-index: 1;
 }
 
 /* IMAGEN */
-.gallery img {
+.gallery-item img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* IG style */
+    object-fit: cover;
     opacity: 0;
-    filter: blur(14px);
-    transform: scale(1.05);
-    transition:
-        opacity .45s ease,
-        filter .45s ease,
-        transform .45s ease;
+    transform: scale(1.03);
+    transition: opacity .3s ease, transform .3s ease;
 }
 
 /* CARGADA */
 .gallery-item.loaded img {
     opacity: 1;
-    filter: blur(0);
     transform: scale(1);
 }
 
 .gallery-item.loaded::before {
-    animation: none;
     opacity: 0;
+    animation: none;
 }
 
-/* HOVER IG */
-.gallery img:hover {
-    transform: scale(1.06);
+/* HOVER SUAVE */
+.gallery-item:hover img {
+    transform: scale(1.05);
 }
 
-/* SHIMMER */
 @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    to { background-position: -400% 0; }
 }
 </style>
 </head>
 
 <body>
+
 <h2>Galería IG</h2>
 <div class="gallery" id="gallery"></div>
 
 <script>
-(function () {
+(() => {
 
     const images = [
         'images/555.jpg',
@@ -120,53 +118,67 @@ h2 {
         'images/PicsArt_12-11-01.43.42.jpg'
     ];
 
-    const maxImages = 6;
+    const MAX_IMAGES = 6;
     const gallery = document.getElementById('gallery');
 
-    function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
+    /* SHUFFLE SIMPLE */
+    const shuffle = arr =>
+        arr.sort(() => Math.random() - 0.5);
 
-    // Persistencia por sesión
-    let selected = sessionStorage.getItem('galleryImages');
-    selected = selected
-        ? JSON.parse(selected)
-        : shuffle([...images]).slice(0, maxImages);
+    /* PERSISTENCIA POR SESIÓN */
+    const selected = JSON.parse(
+        sessionStorage.getItem('galleryImages')
+    ) || shuffle([...images]).slice(0, MAX_IMAGES);
 
-    sessionStorage.setItem('galleryImages', JSON.stringify(selected));
+    sessionStorage.setItem(
+        'galleryImages',
+        JSON.stringify(selected)
+    );
 
-    const fragment = document.createDocumentFragment();
+    /* INTERSECTION OBSERVER */
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
 
-    selected.forEach(src => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'gallery-item';
+            const wrapper = entry.target;
+            const src = wrapper.dataset.src;
 
-        const img = document.createElement('img');
-        img.src = src;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.width = 500;
-        img.height = 500;
-        img.alt = src.split('/').pop().replace(/[-_]/g, ' ');
+            const img = new Image();
+            img.src = src;
+            img.alt = src.split('/').pop().replace(/[-_]/g, ' ');
+            img.decoding = 'async';
 
-        img.onload = () => wrapper.classList.add('loaded');
+            img.onload = () => wrapper.classList.add('loaded');
 
-        img.onerror = () => {
-            img.src = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><rect width="100%" height="100%" fill="%23ddd"/><text x="50%" y="50%" font-size="20" fill="%23666" text-anchor="middle" dominant-baseline="middle">Imagen no disponible</text></svg>';
-            wrapper.classList.add('loaded');
-        };
+            img.onerror = () => {
+                img.src =
+                    'data:image/svg+xml;charset=UTF-8,' +
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">' +
+                    '<rect width="100%" height="100%" fill="%23ddd"/>' +
+                    '<text x="50%" y="50%" fill="%23666" font-size="18" ' +
+                    'text-anchor="middle" dominant-baseline="middle">' +
+                    'Imagen no disponible</text></svg>';
+                wrapper.classList.add('loaded');
+            };
 
-        wrapper.appendChild(img);
-        fragment.appendChild(wrapper);
+            wrapper.appendChild(img);
+            observer.unobserve(wrapper);
+        });
+    }, {
+        rootMargin: '200px'
     });
 
-    gallery.appendChild(fragment);
+    /* CREACIÓN DIFERIDA */
+    selected.forEach(src => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.dataset.src = src;
+        observer.observe(item);
+        gallery.appendChild(item);
+    });
 
 })();
 </script>
+
 </body>
 </html>
