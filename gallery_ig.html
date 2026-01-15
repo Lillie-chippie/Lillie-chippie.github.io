@@ -3,45 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Imágenes</title>
+    <title>Galería IG</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-        .gallery img { width: 100%; height: auto; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        @media (max-width: 700px) {
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            background: #eee;
+        }
     </style>
 </head>
 <body>
-    <h1>Galería de Imágenes Nuevas</h1>
+    <h2 style="text-align:center;">Galería IG</h2>
     <div class="gallery" id="gallery"></div>
-
     <script>
-        const images = [
-            'path/to/image1.jpg',
-            'path/to/image2.jpg',
-            'path/to/image3.jpg',
-            // Agregar más imágenes según sea necesario
-        ];
-
-        // Randomly select images to display
-        function displayRandomImages() {
-            const gallery = document.getElementById('gallery');
-            const imageCount = images.length;
-            const displayedImagesIndex = new Set();
-            const maxToShow = Math.min(6, imageCount); // Max 6 images
-
-            while (displayedImagesIndex.size < maxToShow) {
-                const randomIndex = Math.floor(Math.random() * imageCount);
-                displayedImagesIndex.add(randomIndex);
-            }
-
-            displayedImagesIndex.forEach(index => {
-                const img = document.createElement('img');
-                img.src = images[index];
-                gallery.appendChild(img);
-            });
-        }
-
-        displayRandomImages();
+    const images = [
+        'images/555.jpg',
+        'images/571284014_1415632473418984_8013318232030679594_n.jpg',
+        'images/B612_20240424_173904_236.jpg',
+        'images/B612_20240720_015655_157.jpg',
+        'images/B612_20240728_233309_730.jpg',
+        'images/B612_20240810_175045_494.jpg',
+        'images/B612_20241028_114613_301.jpg',
+        'images/B612_20241125_233734_410.jpg',
+        'images/B612_20250124_234239_544.jpg',
+        'images/B612_20251027_012347_449.jpg',
+        'images/IMG_20240420_190055.jpg',
+        'images/IMG_20240713_151414.jpg',
+        'images/PicsArt_12-11-01.43.42.jpg'
+    ];
+    // cantidad máxima para mostrar (puedes editar este número)
+    const maxImages = 6;
+    // Mezclar de forma aleatoria
+    function shuffle(array) {
+      let currentIndex = array.length, randomIndex;
+      while (currentIndex > 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
+    const selected = shuffle(images.slice()).slice(0, maxImages);
+    const gallery = document.getElementById('gallery');
+    selected.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      gallery.appendChild(img);
+    });
     </script>
 </body>
 </html>
