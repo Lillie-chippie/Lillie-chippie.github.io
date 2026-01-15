@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería IG</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-        @media (max-width: 700px) {
-            .gallery { grid-template-columns: repeat(2, 1fr); }
-        }
-        .gallery img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.09);
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            background: #eee;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería IG</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 16px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 700px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    transition: opacity .3s ease;
+    opacity: 0;
+}
+
+.gallery img.loaded {
+    opacity: 1;
+}
+</style>
 </head>
+
 <body>
-    <h2 style="text-align:center;">Galería IG</h2>
-    <div class="gallery" id="gallery"></div>
-    <script>
+<h2>Galería IG</h2>
+<div class="gallery" id="gallery"></div>
+
+<script>
+(function () {
+
     const images = [
         'images/555.jpg',
         'images/571284014_1415632473418984_8013318232030679594_n.jpg',
@@ -43,25 +68,39 @@
         'images/IMG_20240713_151414.jpg',
         'images/PicsArt_12-11-01.43.42.jpg'
     ];
-    // cantidad máxima para mostrar (puedes editar este número)
+
     const maxImages = 6;
-    // Mezclar de forma aleatoria
+
     function shuffle(array) {
-      let currentIndex = array.length, randomIndex;
-      while (currentIndex > 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-      }
-      return array;
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
-    const selected = shuffle(images.slice()).slice(0, maxImages);
+
     const gallery = document.getElementById('gallery');
+    const selected = shuffle([...images]).slice(0, maxImages);
+
     selected.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      gallery.appendChild(img);
+        const img = document.createElement('img');
+
+        img.src = src;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 500;
+        img.height = 500;
+
+        img.onload = () => img.classList.add('loaded');
+        img.onerror = () => {
+            img.src = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><rect width="100%" height="100%" fill="%23ddd"/><text x="50%" y="50%" font-size="20" fill="%23666" text-anchor="middle" dominant-baseline="middle">Imagen no disponible</text></svg>';
+            img.classList.add('loaded');
+        };
+
+        gallery.appendChild(img);
     });
-    </script>
+
+})();
+</script>
 </body>
 </html>
